@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>银行转账系统</title>
+    <link href="/stylesheets/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <style type="text/css">
+          body{background-image: url("images/13.jpg")}
+        </style>
+   </head>
+  <body>
+    <div class="row">
+     <div class="col-lg-4"></div>
+     <div class="col-lg-4">
+     <h1 class="container">银行转账系统</h1>
+    <div class="form-group">
+      <label for="banking_account">付款人账号</label>
+      <input type="text" class="form-control required" id="banking_account" placeholder="BankingAccount" name="bankingaccount" maxlength="300" />
+     <div id = 'banking_account'></div>
+    </div>
+    <div class="form-group">
+      <label for="accept_account">收款人账号</label>
+      <input type="text" class="form-control required" id="accept_account" placeholder="AcceptAccount" name="acceptaccount" maxlength="300" />
+    </div>
+    <div class="form-group">
+      <label for="transfer_amount">转账金额</label>
+      <input type="text" class="form-control required" id="transfer_amount" placeholder="TransferPrice" name="transferprice"/>
+    </div>
+    </div>
+   <div class="col-lg-12">
+   <div class="col-lg-4"></div>
+   <div class="col-lg-4">
+   <div class="form-group">
+      <input type="button" class="btn btn-success pull-left" id="transfer" value="转账"/>
+      <input type="button" class="btn btn-info pull-right" id="cancel" value="取消"/>
+   </div>
+   <div class="col-lg-4"></div>
+   </div>
+   </div>
+   </div>
+   </div>
+ <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+ <script src="/stylesheets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    
+      $('#banking_account').val('<%=account%>');
+      $('#accept_account').val('<%=reciver%>');
+$(function(){
+     $("#transfer").click(function(){
+     alert("转账开始!");
+     //var banking_account=$("banking_account").val();
+     //var accept_account=$("accept_account").val();
+     var transfer_amount=$("#transfer_amount").val();
+     $.ajax({
+       url:"/transfer1",
+       data:JSON.stringify({amount:transfer_amount}),
+       type: "POST",
+       contentType:"application/json",
+      success:function(data){
+        alert("转账成功!");
+       },
+       error:function(err){
+       	
+          alert("出错:"+err);
+     
+       }
+   });
+});
+    $('#cancel').click(function(){
+       $('#banking_account').val("");
+       $('#accept_account').val("");
+       $('#transfer_price').val("");
+     });
+    
+   });
+</script>
+</body>
+</html>

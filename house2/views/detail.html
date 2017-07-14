@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title><%=title%></title>
+        <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+        <link href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+        <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <style type="text/css">
+            body{background: url(images/25.jpg) no-repeat;background-size:cover;font-size: 16px;}
+            .form{background: rgba(255,255,255,0.2);width:400px;margin:100px auto;}
+            #register_form{display: block;}
+            .fa{display: inline-block;top: 27px;left: 6px;position: relative;color: #ccc;}
+            input[type="text"]{padding-left:10px;}
+            .checkbox{padding-left:21px;}
+        </style>
+    </head>
+    <body>
+      <div class="container">
+          <div class="form row">
+         <form class="form-horizontal col-sm-offset-3 col-md-offset-3" id="register_form">
+                <h3 class="form-title">房屋详细信息</h3>
+                <div class="col-sm-9 col-md-9">
+                    <div class="form-group">
+                       
+                        <label>房屋交易状态</label>
+                        <input class="form-control required" type="text" id="status"  name="username" autofocus="autofocus" maxlength="15"/>
+                    </div>
+
+                    <div class="form-group">
+                       
+                        <label>用户名/房主姓名</label>
+                        <input class="form-control required" type="text" id="username"  name="username" autofocus="autofocus" maxlength="15"/>
+                    </div>
+                    <div class="form-group">
+                       
+                        <label>联系电话</label>
+                        <input class="form-control required" type="text" id="contactnumber"  name="contactnumber" autofocus="autofocus" maxlength="15"/>
+                    </div>
+                    <div class="form-group">
+                        
+                        <label>房屋地址</label>
+                        <input class="form-control required" type="text" id="houseaddress"  name="houseaddress" autofocus="autofocus" maxlength="15"/>
+                    </div>
+                    <div class="form-group">
+                      <label>房屋详情</label>
+                        <input class="form-control required" type="text" id="housedetails"  name="housedetails" autofocus="autofocus" maxlength="25"/>
+                    </div>
+                    <div class="form-group">
+                            
+                            <label>价格</label>
+                            <input class="form-control required" type="text" id="price"  name="price" maxlength="15"/>
+                    </div>
+                </div>
+            </form>
+            <div class="col-md-12">
+           <button type="button" class="btn btn-info pull-left" id = "reserve" style="float:right;margin-right:31px;">预定</button>
+           <button type="button" class="btn btn-warning pull-left" id = "pay" style="float:right;margin-right:31px;">支付定金</button>
+           <button type="button" class="btn btn-primary pull-left" id="remainder" style="float:right;margin-right:31px;">尾款</button>
+           <button type="button" class="btn btn-success pull-left" id="transfer" style="float:right;margin-right:31px;">过户</button>
+           </div>
+        </div>
+        </div>
+       
+        
+         <script type="text/javascript"> 
+              var username = '<%=username%>';
+              var password = '<%=password%>';
+             $('#status').val('<%=status%>');
+             $('#username').val('<%=userName%>');
+             $('#contactnumber').val('<%=phoneNumber%>');
+             $('#houseaddress').val('<%=houseAddress%>');
+             $('#housedetails').val('<%=description%>');
+             $('#price').val('<%=price%>');
+                     
+                  if(username == 'bank'&& password == '123'){
+                        $('#reserve').attr('disabled',true);
+                        $('#pay').attr('disabled',false);
+                        $('#remainder').attr('disabled',false); 
+                        $('#transfer').attr('disabled',true);
+                    }else if(username == '李四'&& password == '123'){
+                        $('#reserve').attr('disabled',false);
+                        $('#pay').attr('disabled',true);
+                        $('#remainder').attr('disabled',true); 
+                        $('#transfer').attr('disabled',true);
+                    }else if(username == 'admin' && password == '123'){
+                        $('#reserve').attr('disabled',true);
+                        $('#pay').attr('disabled',true);
+                        $('#remainder').attr('disabled',true); 
+                        $('#transfer').attr('disabled',false);
+                    }    
+
+             $(function(){
+               
+               $('#reserve').click(function(){
+                    var addr = $('#houseaddress').val();
+                    $.ajax({
+                        url:'/reserve?address='+addr,
+                        Type:'GET',
+                        contentType:'application/json',
+                        dataType:'json',
+                        success:function(data){
+                            alert("成功");
+                        },
+                        error:function(err){
+                            alert("失败");
+                        }
+                    });  
+                 });
+
+               $('#pay').click(function(){
+                    $.ajax({
+                        url:'/pay',
+                        Type:'GET',
+                        contentType:'application/json',
+                        dataType:'json',
+                        success:function(data){
+                            if(data.status == 200){
+                                window.location.href = '/transfer';
+                            }
+                        },
+                        error:function(err){
+                            alert("失败");
+                        } 
+                   }); 
+                 });  
+               $('#remainder').click(function(){
+                  var addr = $('#houseaddress').val();
+                    $.ajax({
+                        url:'/remainder?address='+addr,
+                        Type:'GET',
+                        contentType:'application/json',
+                        dataType:'json',
+                        success:function(data){
+                            alert("成功");
+                            if(data.status == 200){
+                                window.location.href = '/transfer';
+                            }
+                        },
+                        error:function(err){
+                            alert("失败");
+                        } 
+                  }); 
+               });
+                $('#transfer').click(function(){
+                    
+                    $.ajax({
+                        url:'/transfercenter',
+                        Type:'GET',
+                        contentType:'application/json',
+                        dataType:'json',
+                        success:function(data){
+                            alert("成功");
+                        },
+                        error:function(err){
+                            alert("失败");
+                        }
+                      });    
+                   }); 
+               });
+                
+         </script>
+ </body>
+</html>

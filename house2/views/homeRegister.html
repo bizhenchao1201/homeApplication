@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title><%=title%></title>
+        <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+        <link href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+        <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <style type="text/css">
+            body{background: url(images/25.jpg) no-repeat;background-size:cover;font-size: 16px;}
+            .form{background: rgba(255,255,255,0.2);width:400px;margin:100px auto;}
+            #register_form{display: block;}
+            .fa{display: inline-block;top: 27px;left: 6px;position: relative;color: #ccc;}
+            input[type="text"]{padding-left:10px;}
+            .checkbox{padding-left:21px;}
+        </style>
+    </head>
+    <body>
+      <div class="container">
+          <div class="form row">
+         <form class="form-horizontal col-sm-offset-3 col-md-offset-3" id="register_form">
+                <h3 class="form-title">房屋注册</h3>
+                <div class="col-sm-9 col-md-9">
+                    <div class="form-group">
+                      
+                        <label>用户名/房主姓名</label>
+                        <input class="form-control required" type="text" id="username" placeholder="请输入姓名" name="username" autofocus="autofocus" maxlength="15"/>
+                    </div>
+                    <div class="form-group">
+                       
+                        <label>身份证号</label>
+                        <input class="form-control required" type="text" id="idnumber" placeholder="请输入身份证号" name="idnumber" autofocus="autofocus" maxlength="18"/>
+                    </div>
+                    <div class="form-group">
+                        
+                        <label>房产证号</label>
+                        <input class="form-control required" type="text" id="houseid" placeholder="请输入房产证号" name="houseid" autofocus="autofocus" maxlength="15"/>
+                    </div>
+                    <div class="form-group">
+                      
+                        <label>联系电话</label>
+                        <input class="form-control required" type="text" id="contactnumber" placeholder="请输入联系电话" name="contactnumber" autofocus="autofocus" maxlength="15"/>
+                    </div>
+                    <div class="form-group">
+                       
+                        <label>房屋地址</label>
+                        <input class="form-control required" type="text" id="houseaddress" placeholder="请输入房屋地址" name="houseaddress" autofocus="autofocus" maxlength="15"/>
+                    </div>
+                    <div class="form-group">
+                        
+                        <label>房屋详情</label>
+                        <input class="form-control required" type="text" id="housedetails" placeholder="请输入房屋详情" name="housedetails" autofocus="autofocus" maxlength="25"/>
+                    </div>
+                    <div class="form-group">
+                            
+                            <label>价格</label>
+                            <input class="form-control required" type="text" id="price" placeholder="请输入价格" name="price" maxlength="15"/>
+                    </div>
+                    <div class="form-group">
+                      <input type="button" class="btn btn-success pull-left" id = "register" value="注册"/>
+                      <input type="button" class="btn btn-info pull-right" id="cancel" value="取消"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+<script type="text/javascript">
+ $(function(){
+   $("#register").click(function(){
+    alert("注册成功");
+    var username = $("#username").val();
+    var idnumber = $('#idnumber').val();
+    var houseid = $('#houseid').val();
+    var contactnumber = $('#contactnumber').val();
+    var houseaddress = $('#houseaddress').val();
+    var housedetails = $('#housedetails').val();
+    var price = $('#price').val();
+        price = parseInt(price);
+    var house = {username:username,idnumber:idnumber,houseid:houseid,contactnumber:contactnumber,houseaddress:houseaddress,housedetails:housedetails,price:price};
+    
+    $.ajax({
+      url:"/homeregister",
+      data:JSON.stringify(house),
+      type: "POST",
+      contentType:"application/json",
+      success:function(data){
+        if(data.status==200){
+          alert("审核已通过!");
+        }else if(data.status == 300){
+          alert("审核未通过!");
+        }
+      },
+      error:function(err){
+         alert("出错:"+err);
+      }
+  });
+ 
+
+});
+    $('#cancel').click(function(){
+      $("#userName").val("");
+      $('#idNumber').val("");
+      $('#houseId').val("");
+      $('#contactNumber').val("");
+      $('#houseaddress').val("");
+      $('#housedetails').val("");
+      $("#price").val("");
+    });
+
+  });
+</script>
+ </body>
+</html>

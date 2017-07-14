@@ -21,7 +21,7 @@ contract HouseInfo {
     }
 
     function getHouseInfo(string HouseId)constant returns(string,string,string,string){        
-    	return(houses[HouseId].HouseId,houses[HouseId].seller.name,houses[HouseId].id,houses[HouseId].seller.number); 
+    	return(houses[HouseId].HouseId,houses[HouseId].seller.name,houses[HouseId].seller.id,houses[HouseId].seller.number); 
     }
 }
     

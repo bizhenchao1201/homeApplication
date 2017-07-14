@@ -25,7 +25,7 @@ contract HomeRegister{
         homes[addr].status = s;
     }   
 function getStatus(string addr)constant returns(string){
-    return homes[addr].stauts;
+    return homes[addr].status;
 }
 
 	function register(string homeAddress,string userName,string userIdCard,string homeId,string userPhoneNumber,string homeDescription,uint homePrice){

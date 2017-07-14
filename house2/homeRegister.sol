@@ -22,10 +22,10 @@ contract HomeRegister{
 	mapping(string => Home) homes;
     
 	function setStatus(string addr,string s){
-        homes[homeAddress].status = s;
+        homes[addr].status = s;
     }   
 function getStatus(string addr)constant returns(string){
-    return homes[homeAddress];
+    return homes[addr];
 }
 
 	function register(string homeAddress,string userName,string userIdCard,string homeId,string userPhoneNumber,string homeDescription,uint homePrice){

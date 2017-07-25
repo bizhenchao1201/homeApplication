@@ -19,7 +19,9 @@ web3.setProvider(new Web3.providers.HttpProvider("http://localhost:8545"));
  console.log(account_transfer);
 /* GET home page. */
 router.get('/transfer/main', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+	 username = req.query.username;
+	 password= req.query.password;
+  res.render('index', { username:username,password:password, title: 'Express' });
 });
 /*GET regiter page. */
 router.get("/transfer/register", function(req,res){

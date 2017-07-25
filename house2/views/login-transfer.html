@@ -92,7 +92,7 @@
                     success: function(data){
                         if (data.status === 200) {
                             //alert(data.userName);
-                            window.location.href = '/homesearch?username='+data.username+'&password='+data.password;
+                            window.location.href = '/transfer/main?username='+data.username+'&password='+data.password;
                         }
                     },
                     error:function(err){

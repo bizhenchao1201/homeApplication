@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
 });
 /*GET regiter page. */
 router.get("/register", function(req,res){
-	res.render('register',{title:'房屋产权注册'});
+	res.render('homePropertyRegister',{title:'房屋产权注册'});
 });
 
 router.post("/register1", function(req, res) {
@@ -58,7 +58,7 @@ router.post("/register1", function(req, res) {
 });  
 
 router.get("/search",function(req,res){
-	res.render('search',{title:'房屋产权查询'});
+	res.render('homePropertySearch',{title:'房屋产权查询'});
 });
 
 router.get("/search1",function(req,res){
@@ -98,7 +98,7 @@ router.get("/search1",function(req,res){
    }); 
 
    router.get('/login',function(req,res){
-   		res.render('login',{title:"登录页面"});
+   		res.render('login_intermediary',{title:"登录页面"});
    });
     router.get('/login-transfer',function(req,res){
    		res.render('login-transfer',{title:"房屋交易中心登录页面"});
@@ -221,7 +221,7 @@ router.get("/search1",function(req,res){
         	var username = req.query.username;
         	var password = req.query.password;
           	//var status = home.getStatus.call();
-      	res.render('detail',{title:'房屋详细信息',username:username,password:password,status:status,userName:userName,phoneNumber:phoneNumber,houseAddress:houseAddress,description:description,price:price});
+      	res.render('homeDetail',{title:'房屋详细信息',username:username,password:password,status:status,userName:userName,phoneNumber:phoneNumber,houseAddress:houseAddress,description:description,price:price});
       });
 
 
@@ -265,8 +265,8 @@ router.get("/search1",function(req,res){
        }); 
 
        router.get('/transfercenter',function(req,res){
-               var houseid = '1221';
-               var owername = '王五';
+               var houseid = '110';
+               var owername = '孙悟空';
                var ownerid = '123456789987654321';
                var phonenumber = '13842812334';
        	  try{

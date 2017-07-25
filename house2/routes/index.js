@@ -18,11 +18,11 @@ web3.setProvider(new Web3.providers.HttpProvider("http://localhost:8545"));
  var account_transfer = web3.eth.accounts[3];
  console.log(account_transfer);
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/transfer/main', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 /*GET regiter page. */
-router.get("/register", function(req,res){
+router.get("/transfer/register", function(req,res){
 	res.render('homePropertyRegister',{title:'房屋产权注册'});
 });
 
@@ -57,7 +57,7 @@ router.post("/register1", function(req, res) {
 	 res.send({ status: 200, message: "success" });
 });  
 
-router.get("/search",function(req,res){
+router.get("/transfer/search",function(req,res){
 	res.render('homePropertySearch',{title:'房屋产权查询'});
 });
 

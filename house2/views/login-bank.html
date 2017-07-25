@@ -84,7 +84,7 @@
                       var password = $('#password').val();
                       var user = {username:username,password:password};
                       $.ajax({
-                          url:'/login-bank1',
+                          url:'/bank/login1',
                           type:'POST',
                           data:JSON.stringify(user),
                           contentType:'application/json',

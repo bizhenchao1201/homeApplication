@@ -100,14 +100,14 @@ router.get("/search1",function(req,res){
    router.get('/login',function(req,res){
    		res.render('login_intermediary',{title:"登录页面"});
    });
-    router.get('/login-transfer',function(req,res){
+    router.get('/transfer/login',function(req,res){
    		res.render('login-transfer',{title:"房屋交易中心登录页面"});
    });
-     router.get('/login-bank',function(req,res){
+     router.get('/bank/login',function(req,res){
    		res.render('login-bank',{title:"银行系统登录页面"});
       });
 
-     router.post('/login-bank1',function(req,res){
+     router.post('/bank/login1',function(req,res){
      	    var username = req.body.username;
             var password = req.body.password;
      	    if(username === 'bank'&& password ==='123'){
@@ -115,7 +115,7 @@ router.get("/search1",function(req,res){
            }
      });
 
-     router.post('/login-transfer1',function(req,res){
+     router.post('/transfer/login1',function(req,res){
      	    var username = req.body.username;
             var password = req.body.password;
      	    if(username === 'admin'&& password ==='123'){

@@ -268,7 +268,7 @@
     <script type="text/javascript">
         $(function(){
       $('#search').click(function(){
-        alert('开始查询');
+        console.log('开始查询');
         var houseid = $('#houseid').val();
         $.ajax({
           url:'/search1',
@@ -281,7 +281,7 @@
             $('#contactnumber').val(data.contactnumber);
         },
          error:function(err){
-          alert("出错:"+ err);
+          console.log("出错:"+ err);
         }
       });
     }); 

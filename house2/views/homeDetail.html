@@ -290,7 +290,7 @@
             $('#pay').attr('disabled',false);
             $('#remainder').attr('disabled',false);
             $('#transfer').attr('disabled',true);
-        }else if(username == '李四'&& password == '123'){
+        }else if(username == 'lisi'&& password == '123'){
             $('#reserve').attr('disabled',false);
             $('#pay').attr('disabled',true);
             $('#remainder').attr('disabled',true);
@@ -312,10 +312,10 @@
                     contentType:'application/json',
                     dataType:'json',
                     success:function(data){
-                        alert("成功");
+                        console.log("成功");
                     },
                     error:function(err){
-                        alert("失败");
+                        console.log("失败");
                     }
                 });
             });
@@ -332,7 +332,7 @@
                         }
                     },
                     error:function(err){
-                        alert("失败");
+                        console.log("失败");
                     }
                 });
             });
@@ -344,13 +344,13 @@
                     contentType:'application/json',
                     dataType:'json',
                     success:function(data){
-                        alert("成功");
+                        console.log("成功");
                         if(data.status == 200){
                             window.location.href = '/transfer';
                         }
                     },
                     error:function(err){
-                        alert("失败");
+                       console.log("失败");
                     }
                 });
             });
@@ -362,10 +362,10 @@
                     contentType:'application/json',
                     dataType:'json',
                     success:function(data){
-                        alert("成功");
+                        console.log("成功");
                     },
                     error:function(err){
-                        alert("失败");
+                        console.log("失败");
                     }
                 });
             });

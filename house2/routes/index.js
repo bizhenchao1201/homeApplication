@@ -126,14 +126,14 @@ router.get("/search1",function(req,res){
    router.post('/login1',function(req,res){
         var username = req.body.username;
         var password = req.body.password;
-        if(username === '张三'&& password ==='123'){
+        if(username === 'zhangsan'&& password ==='123'){
         	console.log("true");
         	res.send({status:200,message:'成功'});
       
            	    //res.redirect(301,'/home');
              // res.writeHead(302, {'Location': '/home'});
              res.end();
-        }else if(username === '李四'&& password ==='123'){
+        }else if(username === 'lisi'&& password ==='123'){
             res.send({status:300,message:'成功',username:username,password:password});
             res.end();
         }   	 
